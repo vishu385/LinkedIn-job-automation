@@ -25,7 +25,7 @@ It is a fully automated, end-to-end Python system that:
 This guide assumes you are a beginner. Follow every step carefully to get this running on your PC.
 
 ### Step 1: Install Prerequisites
-1. **Python 3.8+**: Download and install Python from [python.org](https://www.python.org/). *Critical: During installation, make sure to check the box that says "Add Python to PATH".*
+1. **Python 3.11.9+**: Download and install Python from [python.org](https://www.python.org/). *Critical: During installation, make sure to check the box that says "Add Python to PATH".*
 2. **Git**: Download and install Git from [git-scm.com](https://git-scm.com/).
 
 ### Step 2: Download the Project
