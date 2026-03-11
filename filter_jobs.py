@@ -1,0 +1,79 @@
+import json
+import os
+
+def filter_jobs():
+    input_file = "scraped_data.json"
+    output_file = "filtered_jobs.json"
+
+    if not os.path.exists(input_file):
+        print(f"❌ Error: {input_file} not found. Please run the scraper first.")
+        return
+
+    # Load raw data
+    with open(input_file, "r", encoding="utf-8") as f:
+        jobs = json.load(f)
+
+    # 1. TARGET TITLES LIST (Deduplicated from user input)
+    TARGET_TITLES = [
+        "Senior Marketing Manager", "Senior Manager – Marketing", "Senior Manager, Marketing",
+        "Senior Manager – B2B Marketing", "Senior Marketing Lead", "Marketing Head",
+        "Marketing Lead", "Growth Marketing Manager", "Growth Manager",
+        "Growth & Marketing Manager", "Growth Lead", "Growth Marketing Lead",
+        "Content & Growth Manager", "Performance Marketing Manager", "Performance Marketer",
+        "Performance Marketing Lead", "Paid Media Manager", "Digital Performance Manager",
+        "Paid Marketing Manager", "Digital Marketing Manager", "Digital Marketing Lead",
+        "Digital Marketing Head", "Digital Marketing Manager (Google Ads)", "Online Marketing Manager",
+        "Digital Growth Manager", "Brand Marketing Manager", "Brand Manager",
+        "Brand & Communications Manager", "Marketing Communications Manager", "Creative Marketing Manager",
+        "Campaign Manager (Brand)", "Marketing Manager – Growth", "Growth Manager – Marketing",
+        "Marketing Growth Manager", "Demand Generation Manager", "Demand Gen Manager",
+        "Demand Generation Lead", "Growth Demand Manager", "B2B Demand Generation Manager",
+        "Paid Acquisition Manager", "Acquisition Marketing Manager", "Paid User Acquisition Manager",
+        "Performance Acquisition Manager", "Channel Marketing Manager", "Partner Marketing Manager",
+        "Product Marketing Manager", "Product Marketing Lead", "Senior Product Marketing Manager",
+        "PMM (Product Marketing Manager)", "Go-To-Market Manager", "Marketing Operations Manager",
+        "Marketing Ops Manager", "Marketing Operations Lead", "Revenue Operations Manager",
+        "Growth Operations Manager", "User Acquisition Manager", "UA Manager",
+        "Growth Acquisition Manager", "Mobile Marketing Manager", "Content Marketing Manager",
+        "Content Lead", "Content Strategy Manager", "Content Marketing Lead",
+        "Social Media Manager", "Social Media Lead", "Social Media & Content Manager",
+        "Community Manager", "Digital Community Manager", "Marketing Analytics Manager",
+        "Marketing Data Manager", "Event Marketing Manager", "Field Marketing Manager",
+        "Events & Partnerships Manager", "B2B Marketing Manager", "B2B Growth Manager",
+        "SaaS Marketing Manager", "Enterprise Marketing Manager"
+    ]
+
+    # 2. TARGET LOCATIONS (Leave empty for user to add later)
+    # Example: ["Delhi", "Mumbai", "Remote"]
+    TARGET_LOCATIONS = [] 
+
+    filtered_jobs = []
+    lower_titles = [t.lower() for t in TARGET_TITLES]
+    lower_locations = [l.lower() for l in TARGET_LOCATIONS]
+
+    for job in jobs:
+        title = job.get("title", "").lower()
+        location = job.get("location", "").lower()
+
+        # Check Title Match
+        title_match = any(target in title for target in lower_titles)
+        
+        # Check Location Match (Only if list is not empty)
+        location_match = True
+        if lower_locations:
+            location_match = any(loc in location for loc in lower_locations)
+
+        if title_match and location_match:
+            filtered_jobs.append(job)
+
+    # Save filtered results
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(filtered_jobs, f, indent=2)
+
+    print(f"\n✅ Filtering Complete!")
+    print(f"   - Total Jobs Analyzed: {len(jobs)}")
+    print(f"   - Jobs Matching Filters: {len(filtered_jobs)}")
+    print(f"   - Results saved to: {output_file}")
+
+if __name__ == "__main__":
+    filter_jobs()

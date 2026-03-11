@@ -1,0 +1,41 @@
+# Environments
+.env
+.docs.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Google Credentials and Tokens
+credentials.json
+oauth_credentials.json
+token.json
+
+# Local JSON Data (Large scraped files & personal data)
+filtered_jobs.json
+linkedin_jobs.json
+scored_jobs.json
+scraped_data.json
+resume.json
+sheet_config.json
+sheet_urls.txt
+
+# Generated Documents
+generated_docs/
+*.pdf
+*.docx
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# State files
+.llm_docs_state.json
+.llm_scoring_state.json
+
+# OS files
+.DS_Store
+Thumbs.db

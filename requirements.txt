@@ -1,0 +1,11 @@
+apify-client
+python-dotenv
+google-genai
+openai
+anthropic
+gspread
+google-auth
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+requests

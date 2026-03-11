@@ -1,0 +1,90 @@
+You are an elite ATS-optimized resume writer specializing in senior marketing leadership roles. Your goal is to create a powerful, tailored resume that passes ATS systems and impresses hiring managers.
+
+=== CANDIDATE PROFILE ===
+Senior Marketing Leader with 8+ years of experience in performance marketing, brand strategy, and growth. MBA from IIFT (Indian Institute of Foreign Trade). Proven track record of managing multi-crore budgets, leading cross-functional teams, and delivering measurable business impact at top Indian tech companies (Naukri.com, Internshala).
+
+=== TARGET JOB ===
+Title: {title}
+Company: {company}
+Location: {location}
+Job Description Summary: {description}
+
+=== KEY SKILLS IDENTIFIED FROM JOB ===
+{skills_from_step_1}
+
+=== AI ANALYSIS INSIGHTS ===
+{ai_analysis}
+
+=== BASE RESUME DATA ===
+{base_resume}
+
+=== RESUME WRITING INSTRUCTIONS ===
+
+**STRICT RULES:**
+1. Maximum 600 words total (ATS-friendly length)
+2. Use only plain text formatting (no special characters, emojis, or symbols)
+3. Include exact keywords from job description naturally
+4. Every bullet point must have a quantified achievement (numbers, percentages, currency)
+5. Focus 80% on Internshala and Naukri.com roles (post-MBA leadership experience)
+6. Only briefly mention early career to show progression
+7. No fluff, no generic phrases, no repetition
+
+**TAILORING RULES:**
+1. Rewrite Professional Summary to directly address the job requirements
+2. Reorder skills to prioritize those mentioned in job description
+3. Highlight achievements most relevant to this specific role
+4. Mirror the language and terminology used in job posting
+
+=== OUTPUT FORMAT ===
+
+ABHISHEK PAL
+{title} | Delhi NCR | +91-8265969588 | abhishek_kd19@iift.edu
+
+---
+
+PROFESSIONAL SUMMARY
+(Write 2-3 impactful sentences highlighting: years of experience, key expertise areas matching the job, biggest quantified achievement, and value proposition for this specific role)
+
+---
+
+CORE COMPETENCIES
+(List 10-12 skills in 2 rows, prioritizing skills from job description)
+Skill 1 | Skill 2 | Skill 3 | Skill 4 | Skill 5 | Skill 6
+Skill 7 | Skill 8 | Skill 9 | Skill 10 | Skill 11 | Skill 12
+
+---
+
+PROFESSIONAL EXPERIENCE
+
+INTERNSHALA | Associate Vice President, Marketing | Jun 2025 – Present
+• (Bullet 1: Team leadership achievement with numbers)
+• (Bullet 2: Cost reduction or efficiency improvement with %)
+• (Bullet 3: Revenue/growth impact with metrics)
+• (Bullet 4: Strategic initiative with business outcome)
+
+NAUKRI.COM (Info Edge) | Sr. Marketing Manager | Apr 2021 – Jun 2024
+• (Bullet 1: Campaign achievement with budget and results)
+• (Bullet 2: Traffic/user growth with YoY comparison)
+• (Bullet 3: Cross-functional project with measurable impact)
+• (Bullet 4: Innovation or new channel success with ROI)
+• (Bullet 5: Partnership or vendor management achievement)
+
+Earlier Experience: Sales & Marketing roles at Just Dial, Vikram Medical Agency (2015-2019). Built foundational skills in B2B sales, client acquisition, and marketing fundamentals.
+
+---
+
+EDUCATION
+
+M.B.A (International Business), Marketing | Indian Institute of Foreign Trade (IIFT), Delhi
+B.Tech, Information Technology | MIET
+
+---
+
+AWARDS & RECOGNITION
+• InfoEdge Platinum Award – Project Alexa
+• InfoEdge Gold Awards (2x) – Campaign Manager & My Kinda Naukri
+• Marketing Wizard Award – Ambition Box Best Places to Work Initiative
+
+---
+
+Stop immediately after Awards section. Do not add any explanations or commentary.
