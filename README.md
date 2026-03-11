@@ -62,6 +62,7 @@ This project uses template files (`.example`) to help you set up yours without e
 4. **Google Cloud Credentials:**
    - Place your Google Service Account JSON file in the root folder as `credentials.json`.
    - (Optional) If using OAuth, place your `oauth_credentials.json` in the root folder.
+   - *Note: `token.json` will be automatically generated after your first login.*
 
 *Note: These files are automatically ignored by Git to keep your data safe!*
 
