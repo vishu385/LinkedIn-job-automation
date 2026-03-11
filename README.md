@@ -32,7 +32,7 @@ This guide assumes you are a beginner. Follow every step carefully to get this r
 Open your Terminal (Command Prompt / PowerShell on Windows, Terminal on Mac) and run:
 ```bash
 git clone <your-github-repo-url>
-cd "Linkdin job Automation"
+cd "LinkedIn-job-automation"
 ```
 
 ### Step 3: Install Required Python Libraries
