@@ -44,27 +44,40 @@ pip install -r requirements.txt
 
 ### Step 4: Configuration (Essential)
 
-This project uses template files (`.example`) to help you set up yours without exposing your private data.
+This project uses template files (`.example`) to help you set up yours without exposing your private data. **DO NOT edit the `.example` files directly!** Follow these steps instead:
 
-1. **Personal Information (`resume.json`):**
-   - Copy `resume.json.example` and rename it to `resume.json`.
-   - Fill it with your actual details (Experience, Skills, etc.).
-   - *Note: The AI uses this to score jobs against your profile.*
+#### 1. Copy the Templates (Rename)
+Open your terminal in the project folder and run these commands to create your real configuration files:
+```powershell
+cp resume.json.example resume.json
+cp sheet_config.json.example sheet_config.json
+cp .env.example .env
+```
 
-2. **Google Sheet Config (`sheet_config.json`):**
-   - Copy `sheet_config.json.example` and rename it to `sheet_config.json`.
-   - Update the `spreadsheet_id` with your own Google Sheet ID.
+#### 2. Open & Edit Files
+To open these files in **Notepad**, run these commands:
+*   **Resume:** `notepad resume.json`
+*   **API Keys:** `notepad .env`
+*   **Sheet Info:** `notepad sheet_config.json`
 
-3. **API Keys (`.env`):**
-   - Copy `.env.example` and rename it to `.env`.
-   - Add your API keys for Apify, Gemini/OpenAI, and Telegram.
+#### 3. How to Save Your Changes
+After you paste your keys or type your details in Notepad:
+1.  Press **`Ctrl + S`** on your keyboard to Save.
+2.  Close Notepad.
 
-4. **Google Cloud Credentials:**
-   - Place your Google Service Account JSON file in the root folder as `credentials.json`.
-   - (Optional) If using OAuth, place your `oauth_credentials.json` in the root folder.
-   - *Note: `token.json` will be automatically generated after your first login.*
+#### 4. Summary of Files & Actions:
+
+| File Name | Mandatory Action | What to Fill? |
+| :--- | :--- | :--- |
+| **`resume.json`** | **Edit** | Your personal experience, skills, and summary. |
+| **`.env`** | **Edit** | Your Apify Token and AI API Keys. |
+| **`sheet_config.json`** | **Edit** | Your Google Sheet ID. |
+| **`credentials.json`** | **Copy & Paste** | Download from Google Cloud and paste in this folder. |
+| **`token.json`** | **Do Nothing** | This is created **automatically** when you first log in. |
 
 *Note: These files are automatically ignored by Git to keep your data safe!*
+
+---
 
 ---
 
