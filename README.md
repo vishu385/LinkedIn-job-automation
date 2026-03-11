@@ -173,20 +173,22 @@ This system is built around three core files that you should edit to match your 
 
 As the system runs, it creates and uses several files. Here is exactly what they do:
 
-### 🔐 Credentials & Keys
-- **`credentials.json`**: Your Google Service Account key. This gives the script permission to write to your Google Sheets and Google Drive directly.
-- **`oauth_credentials.json` / `token.json`**: Used for alternative Google authentication methods (OAuth 2.0). If you strictly use `credentials.json`, you generally don't need to worry about these.
-- **`.env`**: Stores your secret API keys (Apify, Gemini, OpenAI, Anthropic, Telegram). **Never share this file on GitHub!**
+### 🔐 Authentication & Configuration Files
+- **`credentials.json`**: **(The Master Key)** This is a Google Service Account key. Think of it as a "Bot Account." It allows the script to work in the background without asking you to log in every time. It is the most secure way to connect to Google Sheets and Drive.
+- **`oauth_credentials.json`**: **(The Browser Key)** This is for standard "Sign in with Google" popups. It's used as a backup if the Service Account is not set up.
+- **`token.json`**: **(The Permission Slip)** After you log in via the browser once, Google gives the script a "token." This file stores that token so you don't have to keep logging in. **Security Note:** This file contains sensitive access info and is never uploaded to GitHub.
+- **`sheet_config.json`**: **(The Translator)** This file tells the Python script exactly which JSON data matches which column in your Google Sheet. It makes the system flexible—you can change your spreadsheet column names without touching the code!
+- **`.env`**: **(The Secret Vault)** Stores all your private API keys for Apify, Gemini, OpenAI, etc. Keeping these here ensures they never get leaked.
 
-### 📊 Data Files (The Pipeline)
-- **`scraped_data.json` / `linkedin_jobs.json`**: The raw output directly from the Apify LinkedIn scraper. It contains all the messy, unfiltered job data.
-- **`filtered_jobs.json`**: The clean list of jobs after `filter_jobs.py` removes bad locations, wrong titles, or promoted spam.
-- **`scored_jobs.json`**: The most important data file! After the AI evaluates the jobs, the overall scores (out of 100), AI reasoning, and "Dream Job" status are saved here. **This is the exact file that gets synced to Google Sheets.**
-- **`sheet_config.json`**: Controls exactly how the JSON data maps to columns in your Google Sheet. If you want to change a column name in your Google Sheet, you update the mapping in this file.
+### 📊 Data Files (Local results - NOT on GitHub)
+You might notice that files like `scored_jobs.json` or `linkedin_jobs.json` are in your local folder but **missing on GitHub**. This is intentional:
+- **Privacy:** These files contain your personal job matches and scoring data.
+- **Transient Data:** These are the "results" for your specific profile. GitHub only stores the "software" (the code), while your PC stores your "data."
+- **Generation:** These files are created automatically the first time you run the script.
 
 ### ⚙️ System State Tracking (Smart Resume Capability)
-- **`.llm_scoring_state.json`**: The script remembers which jobs it has already scored. If you stop the script halfway or run it the next day, it reads this file so it can resume scoring exactly where it left off. This prevents duplicate API calls and saves your API credits!
-- **`.llm_docs_state.json`**: Similar to the scoring state, this remembers which "Dream Jobs" have already had PDF Resumes and Cover Letters generated for them to prevent duplicates.
+- **`.llm_scoring_state.json`**: Remembers which jobs are already scored to save you API credits.
+- **`.llm_docs_state.json`**: Remembers which resumes are already built to prevent duplicates.
 
 ---
 
