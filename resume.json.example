@@ -1,0 +1,50 @@
+{
+    "personal_info": {
+        "name": "Your Name",
+        "email": "your.email@example.com",
+        "phone": "+91-0000000000",
+        "location": "City, Country",
+        "linkedin": "https://www.linkedin.com/in/yourprofile",
+        "experience_years": "X+",
+        "career_level": "Entry/Mid/Senior"
+    },
+    "core_skills": [
+        "Skill 1",
+        "Skill 2",
+        "Skill 3"
+    ],
+    "experience": [
+        {
+            "company": "Company Name",
+            "role": "Your Role",
+            "dates": "Start Date - End Date",
+            "role_level": "Level",
+            "achievements": [
+                "Achievement 1",
+                "Achievement 2"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "degree": "Degree Name",
+            "institution": "University Name",
+            "year": "YYYY"
+        }
+    ],
+    "preferences": {
+        "target_roles": [
+            "Role 1",
+            "Role 2"
+        ],
+        "locations": [
+            "City 1",
+            "Remote"
+        ],
+        "min_salary": "Expected Salary",
+        "company_types": [
+            "Startup",
+            "MNC"
+        ]
+    }
+}

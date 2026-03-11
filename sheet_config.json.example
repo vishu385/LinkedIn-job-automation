@@ -1,0 +1,19 @@
+{
+    "spreadsheet_id": "YOUR_GOOGLE_SHEET_ID_HERE",
+    "spreadsheet_name": "LinkedIn Jobs",
+    "sheet_name": "Jobs",
+    "column_mapping": {
+        "job_id": "id",
+        "job_link": "link",
+        "job_title": "title",
+        "companyName": "companyName",
+        "location": "location",
+        "salaryInfo": "salaryInfo",
+        "postedAt": "postedAt",
+        "descriptionText": "descriptionText",
+        "Dream_ Job": "is_dream_job",
+        "Score Of Dream Job": "score",
+        "Resu_": "ai_resume",
+        "Cover_Letter": "ai_cover_letter"
+    }
+}
