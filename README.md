@@ -192,4 +192,13 @@ You might notice that files like `scored_jobs.json` or `linkedin_jobs.json` are 
 
 ---
 
+## 🤝 Need Custom Automation?
+If you're looking for someone to build a custom automation system, web scraper, or AI-powered pipeline like this one, I'd love to help!
+
+📧 **Contact Me:** [vishupal4102@gmail.com](mailto:vishupal4102@gmail.com)
+
+Let's build something amazing together! 🚀🔥
+
+---
+
 Enjoy your completely automated job hunting experience! 🌟
