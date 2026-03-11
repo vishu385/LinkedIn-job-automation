@@ -42,19 +42,34 @@ Run this command in your terminal:
 pip install -r requirements.txt
 ```
 
-### Step 4: Add Your Personal Information
-1. Open the file named `resume.json` in any text editor (like VS Code or Notepad).
-2. Replace the dummy data with your actual information (Your Name, Contact info, Experience, Projects, Skills). 
-3. *Note: The AI reads this exact file to understand who you are. Make it as detailed as possible!*
+### Step 4: Configuration (Essential)
+
+This project uses template files (`.example`) to help you set up yours without exposing your private data.
+
+1. **Personal Information (`resume.json`):**
+   - Copy `resume.json.example` and rename it to `resume.json`.
+   - Fill it with your actual details (Experience, Skills, etc.).
+   - *Note: The AI uses this to score jobs against your profile.*
+
+2. **Google Sheet Config (`sheet_config.json`):**
+   - Copy `sheet_config.json.example` and rename it to `sheet_config.json`.
+   - Update the `spreadsheet_id` with your own Google Sheet ID.
+
+3. **API Keys (`.env`):**
+   - Copy `.env.example` and rename it to `.env`.
+   - Add your API keys for Apify, Gemini/OpenAI, and Telegram.
+
+4. **Google Cloud Credentials:**
+   - Place your Google Service Account JSON file in the root folder as `credentials.json`.
+   - (Optional) If using OAuth, place your `oauth_credentials.json` in the root folder.
+
+*Note: These files are automatically ignored by Git to keep your data safe!*
 
 ---
 
 ### Step 5: Getting Your API Keys (Crucial Step)
 
-The system needs permission to use web scrapers and AI. You need to get these free API keys and add them to the `.env` file.
-
-1. **Rename the file:** In your project folder, you will see a file named `.env.example`. Rename it to exactly `.env`.
-2. Open `.env` in a text editor to paste your keys.
+If you don't have your keys yet, follow these steps to get them:
 
 #### A. Apify API Key (For Scraping LinkedIn)
 Apify acts as the engine to scrape LinkedIn without getting blocked.
