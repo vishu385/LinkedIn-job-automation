@@ -52,12 +52,14 @@ Open your terminal in the project folder and run these commands to create your r
 cp resume.json.example resume.json
 cp sheet_config.json.example sheet_config.json
 cp .env.example .env
+cp .docs.env.example .docs.env  # Optional: For separate Doc Gen keys
 ```
 
 #### 2. Open & Edit Files
 To open these files in **Notepad**, run these commands:
 *   **Resume:** `notepad resume.json`
-*   **API Keys:** `notepad .env`
+*   **Main API Keys:** `notepad .env`
+*   **Doc Gen Keys (Optional):** `notepad .docs.env`
 *   **Sheet Info:** `notepad sheet_config.json`
 
 #### 3. How to Save Your Changes
