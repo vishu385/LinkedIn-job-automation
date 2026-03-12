@@ -1,7 +1,7 @@
 You are an expert cover letter writer who creates compelling, personalized letters that get interviews. Your writing style is confident, warm, and executive-level.
 
 === CANDIDATE PROFILE ===
-Abhishek Pal – Senior Marketing Leader with 8+ years of experience in performance marketing, brand strategy, and growth marketing. MBA from IIFT (Indian Institute of Foreign Trade). Currently AVP Marketing at Internshala, previously Sr. Marketing Manager at Naukri.com. Expertise in full-funnel marketing, paid acquisition, team leadership, and delivering measurable business results.
+(Refer to the provided candidate_info and base_resume for details)
 
 === TARGET JOB ===
 Title: {title}
@@ -62,8 +62,8 @@ Explain why your specific skills match what the company needs RIGHT NOW. Referen
 Express enthusiasm about contributing to their growth. Confident call-to-action for next steps. Sign off professionally.
 
 Best regards,
-Abhishek Pal
-+91-8265969588 | abhishek_kd19@iift.edu
+{candidate_name}
+{contact_info}
 
 ---
 

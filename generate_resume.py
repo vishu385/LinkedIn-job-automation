@@ -44,6 +44,9 @@ def generate_resume(job_data):
         ai_analysis_data = job_data.get('ai_analysis', {})
         reason_summary = ai_analysis_data.get('Reason_Summary', 'N/A')
         
+        # Get personal info for placeholders
+        personal = base_resume.get('personal_info', {})
+        
         prompt = prompt_template.format(
             title=title,
             company=company,
@@ -51,7 +54,11 @@ def generate_resume(job_data):
             description=job_data.get('descriptionText', 'N/A')[:2000],
             skills_from_step_1=reason_summary,
             ai_analysis=reason_summary,
-            base_resume=json.dumps(base_resume, indent=2)
+            base_resume=json.dumps(base_resume, indent=2),
+            name=personal.get('name', 'CANDIDATE NAME'),
+            phone=personal.get('phone', 'PHONE NUMBER'),
+            email=personal.get('email', 'EMAIL ADDRESS'),
+            user_location=personal.get('location', 'LOCATION')
         )
         
         # Generate using AI with rotation (Gemini/DeepSeek)
