@@ -12,8 +12,18 @@ def score_jobs():
     
     # 1. Determine Keys
     llm_keys = os.getenv("LLM_API_KEYS", "")
+    
+    # Fallback: Check for individual provider keys if LLM_API_KEYS is missing
     if not llm_keys:
-        print("❌ Error: No LLM_API_KEYS found in .env")
+        provider_keys = []
+        for env_var in ["GEMINI_API_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY"]:
+            val = os.getenv(env_var)
+            if val:
+                provider_keys.append(val)
+        llm_keys = ",".join(provider_keys)
+
+    if not llm_keys:
+        print("❌ Error: No API keys found. Please set LLM_API_KEYS or provider-specific keys (e.g., GEMINI_API_KEY) in .env")
         return
 
     # File Paths

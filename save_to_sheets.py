@@ -1,7 +1,6 @@
 import json
 import os
 import gspread
-from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
 from config_helper import ConfigHelper
 
@@ -10,19 +9,11 @@ def save_to_sheets():
     env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
     load_dotenv(dotenv_path=env_path, override=True)
     
-    # Credentials path from .env or default to root
-    creds_path = os.getenv("GOOGLE_SHEETS_CREDENTIALS", "credentials.json")
-    
     # File Paths
     input_file = "scored_jobs.json"
     config_file = "sheet_config.json"
 
     # 1. Validation
-    if not os.path.exists(creds_path):
-        print(f"❌ Error: Credentials file not found at {creds_path}")
-        print("   Please place your Google Service Account JSON file in the project folder.")
-        return
-
     if not os.path.exists(input_file):
         print(f"❌ Error: {input_file} not found. Run scoring first!")
         return
@@ -74,9 +65,8 @@ def save_to_sheets():
 
     # 3. Authenticate & Connect
     try:
-        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = Credentials.from_service_account_file(creds_path, scopes=scope)
-        client = gspread.authorize(creds)
+        from auth_util import get_gspread_client
+        client = get_gspread_client()
         
         # Open Spreadsheet (By ID or Name)
         if spreadsheet_id and spreadsheet_id.strip():
@@ -89,14 +79,7 @@ def save_to_sheets():
             except gspread.SpreadsheetNotFound:
                 print(f"📝 Creating new Spreadsheet: {spreadsheet_name}")
                 spreadsheet = client.create(spreadsheet_name)
-            # Share with the service account email (owner)
-            with open(creds_path, "r") as f:
-                creds_data = json.load(f)
-                service_email = creds_data.get("client_email")
-                # Note: The spreadsheet is already owned by the service account.
-                # You should manually share the sheet with your personal email to see it!
-                print(f"ℹ️ IMPORTANT: Share the sheet with your email address to view it.")
-                print(f"   Spreadsheet ID: {spreadsheet.id}")
+                print(f"✅ Success! Spreadsheet ID: {spreadsheet.id}")
 
         # Open WorkSheet
         try:

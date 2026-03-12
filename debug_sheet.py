@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 def check_sheet():
     load_dotenv(override=True)
-    creds_path = os.getenv("GOOGLE_SHEETS_CREDENTIALS", "credentials.json")
     
     with open("sheet_config.json", "r", encoding="utf-8") as f:
         config = json.load(f)
@@ -14,9 +13,8 @@ def check_sheet():
     sid = config.get("spreadsheet_id")
     sname = config.get("sheet_name", "Jobs")
     
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file(creds_path, scopes=scope)
-    client = gspread.authorize(creds)
+    from auth_util import get_gspread_client
+    client = get_gspread_client()
     
     sheet = client.open_by_key(sid).worksheet(sname)
     all_values = sheet.get_all_values()

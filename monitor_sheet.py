@@ -1,13 +1,7 @@
-"""
-Background Sheet Monitor - Auto-scans for Resume/Cover_Letter requests.
-FULLY AUTOMATIC - No user input needed!
-FULLY AUTOMATIC - No user input needed!
-"""
 import json
 import os
 import time
 import gspread
-from google.oauth2.service_account import Credentials
 from config_helper import ConfigHelper
 from dotenv import load_dotenv
 from generate_resume import generate_resume
@@ -16,15 +10,14 @@ from generate_cover_letter import generate_cover_letter
 def monitor_sheet():
     """
     Background service that monitors Google Sheet for manual generation requests.
-    FULLY AUTOMATIC - Checks Resume and Cover_Letter columns for "true" values.
-    FULLY AUTOMATIC - Checks Resume and Cover_Letter columns for "true" values.
+    Checks Resume and Cover_Letter columns for "true" values.
     Generates documents and replaces 'true' with the local file path.
     """
     # Load environment
     env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
     load_dotenv(dotenv_path=env_path, override=True)
     
-    creds_path = os.getenv("GOOGLE_SHEETS_CREDENTIALS", "credentials.json")
+    config_file = "sheet_config.json"
     config_file = "sheet_config.json"
     scored_jobs_file = "scored_jobs.json"
     
@@ -65,12 +58,17 @@ def monitor_sheet():
                 spreadsheet_id = sheet_config.get("spreadsheet_id")
                 sheet_name = sheet_config.get("sheet_name", "Jobs")
                 
-                # Connect to Google Sheets
-                scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-                creds = Credentials.from_service_account_file(creds_path, scopes=scope)
-                client = gspread.authorize(creds)
+                # Connect to Google Sheets via unified auth_util
+                from auth_util import get_gspread_client
+                client = get_gspread_client()
                 
-                spreadsheet = client.open_by_key(spreadsheet_id)
+                # Open Spreadsheet (By ID or Name)
+                if spreadsheet_id and spreadsheet_id.strip():
+                    spreadsheet = client.open_by_key(spreadsheet_id)
+                else:
+                    spreadsheet_name = sheet_config.get("spreadsheet_name", "LinkedIn Jobs")
+                    spreadsheet = client.open(spreadsheet_name)
+                    
                 worksheet = spreadsheet.worksheet(sheet_name)
                 
                 # Get all values

@@ -57,7 +57,6 @@ def generate_all_pending():
     """Auto-scan sheet and generate all pending Resume/Cover Letters where 'true' is written"""
     import json
     import gspread
-    from google.oauth2.service_account import Credentials
     from dotenv import load_dotenv
     from generate_resume import generate_resume
     from generate_cover_letter import generate_cover_letter
@@ -67,9 +66,8 @@ def generate_all_pending():
         env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
         load_dotenv(dotenv_path=env_path, override=True)
         
-        creds_path = os.getenv("GOOGLE_SHEETS_CREDENTIALS", "credentials.json")
-        config_file = "sheet_config.json"
         scored_jobs_file = "scored_jobs.json"
+        config_file = "sheet_config.json"
         
         print("\n" + "="*50)
         print("📝 AUTO-SCAN & GENERATE - ONE TIME")
@@ -83,10 +81,9 @@ def generate_all_pending():
         spreadsheet_id = sheet_config.get("spreadsheet_id")
         sheet_name = sheet_config.get("sheet_name", "Jobs")
         
-        # Connect to Google Sheets
-        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = Credentials.from_service_account_file(creds_path, scopes=scope)
-        client = gspread.authorize(creds)
+        # Connect to Google Sheets via unified auth_util
+        from auth_util import get_gspread_client
+        client = get_gspread_client()
         
         spreadsheet = client.open_by_key(spreadsheet_id)
         worksheet = spreadsheet.worksheet(sheet_name)
