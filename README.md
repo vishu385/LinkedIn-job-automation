@@ -47,8 +47,9 @@ You can easily change which jobs are saved and which are ignored by editing `fil
 1.  **Open Filter Script:** Run `notepad filter_jobs.py` in your terminal.
 2.  **Edit `TARGET_TITLES` (Line 17):** Add or remove job titles you are interested in.
 3.  **Edit `BLACKLIST_KEYWORDS` (Line 47):** Add keywords you want to **EXCLUDE** (e.g., `"internship"`, `"volunteer"`, `"freelance"`).
-4.  **Save & Close:** Press `Ctrl + S` and close Notepad.
-5.  **Run Filter:** Select option `2` in `main.py` to apply your new filters.
+4.  **Edit `MIN_SALARY_THRESHOLD` (Line 52):** Set your minimum required salary (e.g., `50000`). If a job mentions a salary, the script will check if it meets this value. If no salary is mentioned, it will still pass through.
+5.  **Save & Close:** Press `Ctrl + S` and close Notepad.
+6.  **Run Filter:** Select option `2` in `main.py` to apply your new filters.
 
 ---
 
@@ -132,7 +133,7 @@ This is the most technical step. The Python script needs to talk to your Google 
    - -> Click **ADD KEY** -> **Create new key**.
    - -> Choose **JSON** and click Create.
 7. A JSON file will download to your PC. 
-8. **MOVE this file** into your `Linkdin job Automation` project folder and **RENAME it** to `credentials.json`.
+8. **MOVE this file** into your `LinkedIn-job-automation` project folder and **RENAME it** to `credentials.json`.
 
 **🛑 CRITICAL FINAL GOOGLE STEP:** 
 Open `credentials.json` in Notepad. Find the line that says `"client_email"`. Copy that long email address. 

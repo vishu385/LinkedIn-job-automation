@@ -49,6 +49,28 @@ def filter_jobs():
     # 3. BLACKLIST KEYWORDS (These will be EXCLUDED, e.g., Internship, Trainee)
     BLACKLIST_KEYWORDS = ["intern", "internship", "trainee", "freshman", "student", "steward"]
 
+    # 4. SALARY FILTER (Set your minimum expected salary, e.g., 50000 or 500000)
+    # If a job says "40k - 100k" and you set 50000, it stays (because 100k > 50k).
+    # If a job has NO salary mentioned, it ALSO stays.
+    MIN_SALARY_THRESHOLD = 0  # Set to 0 to disable. Example: 40000
+
+    def extract_salaries(salary_str):
+        if not salary_str: return []
+        import re
+        # Find all numbers (handles 40k, 50,000, 1.2L etc.)
+        nums = []
+        # Find numbers like 40, 50.5, 1,00,000
+        matches = re.findall(r'(\d+(?:[.,]\d+)?)', salary_str.replace(',', ''))
+        for m in matches:
+            val = float(m)
+            # Basic multiplier detection
+            low_str = salary_str.lower()
+            if 'k' in low_str and val < 1000: val *= 1000
+            elif 'l' in low_str and val < 100: val *= 100000
+            elif 'cr' in low_str and val < 10: val *= 10000000
+            nums.append(val)
+        return nums
+
     filtered_jobs = []
     lower_titles = [t.lower() for t in TARGET_TITLES]
     lower_locations = [l.lower() for l in TARGET_LOCATIONS]
@@ -57,6 +79,7 @@ def filter_jobs():
     for job in jobs:
         title = job.get("title", "").lower()
         location = job.get("location", "").lower()
+        salary_raw = job.get("salary", "") # Assuming field name is 'salary'
 
         # Check Title Match (Must match one of these)
         title_match = any(target in title for target in lower_titles)
@@ -64,13 +87,24 @@ def filter_jobs():
         # Check Blacklist (Must NOT contain any of these)
         is_blacklisted = any(black in title for black in lower_blacklist)
         
-        # Check Location Match (Only if list is not empty)
+        # Check Location Match
         location_match = True
         if lower_locations:
             location_match = any(loc in location for loc in lower_locations)
 
-        # Final Decision: Title matches AND Not blacklisted AND Location matches
-        if title_match and not is_blacklisted and location_match:
+        # Check Salary Match (SMART LOGIC)
+        salary_match = True
+        if MIN_SALARY_THRESHOLD > 0 and salary_raw:
+            found_salaries = extract_salaries(salary_raw)
+            if found_salaries:
+                # If any part of the range is >= threshold, we keep it
+                salary_match = any(s >= MIN_SALARY_THRESHOLD for s in found_salaries)
+            else:
+                # If we couldn't parse numbers but salary exists, we keep it to be safe
+                salary_match = True
+        
+        # Final Decision: Title matches AND Not blacklisted AND Location matches AND Salary matches
+        if title_match and not is_blacklisted and location_match and salary_match:
             filtered_jobs.append(job)
 
     # Save filtered results
