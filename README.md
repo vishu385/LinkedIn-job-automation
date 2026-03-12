@@ -42,9 +42,21 @@ Run this command in your terminal:
 pip install -r requirements.txt
 ```
 
-### Step 4: Configuration (Essential)
+### 🔍 Customizing Job Filters
+You can easily change which jobs are saved and which are ignored by editing `filter_jobs.py` in Notepad:
+1.  **Open Filter Script:** Run `notepad filter_jobs.py` in your terminal.
+2.  **Edit `TARGET_TITLES` (Line 17):** Add or remove job titles you are interested in.
+3.  **Edit `BLACKLIST_KEYWORDS` (Line 47):** Add keywords you want to **EXCLUDE** (e.g., `"internship"`, `"volunteer"`, `"freelance"`).
+4.  **Save & Close:** Press `Ctrl + S` and close Notepad.
+5.  **Run Filter:** Select option `2` in `main.py` to apply your new filters.
 
-This project uses template files (`.example`) to help you set up yours without exposing your private data. **DO NOT edit the `.example` files directly!** Follow these steps instead:
+---
+
+### Step 4: Configuration
+
+### ⚙️ System Configuration
+The project uses several configuration files to manage data flow and security:
+ up yours without exposing your private data. **DO NOT edit the `.example` files directly!** Follow these steps instead:
 
 #### 1. Copy the Templates (Rename)
 Open your terminal in the project folder and run these commands to create your real configuration files:
@@ -59,7 +71,7 @@ cp .docs.env.example .docs.env  # Optional: For separate Doc Gen keys
 To open these files in **Notepad**, run these commands:
 *   **Resume:** `notepad resume.json`
 *   **Main API Keys:** `notepad .env`
-*   **Doc Gen Keys (Optional):** `notepad .docs.env`
+*   **Doc Gen Keys:** `notepad .docs.env`
 *   **Sheet Info:** `notepad sheet_config.json`
 
 #### 3. How to Save Your Changes

@@ -43,27 +43,34 @@ def filter_jobs():
         "SaaS Marketing Manager", "Enterprise Marketing Manager"
     ]
 
-    # 2. TARGET LOCATIONS (Leave empty for user to add later)
-    # Example: ["Delhi", "Mumbai", "Remote"]
+    # 2. TARGET LOCATIONS (Example: ["Delhi", "Remote"])
     TARGET_LOCATIONS = [] 
+
+    # 3. BLACKLIST KEYWORDS (These will be EXCLUDED, e.g., Internship, Trainee)
+    BLACKLIST_KEYWORDS = ["intern", "internship", "trainee", "freshman", "student", "steward"]
 
     filtered_jobs = []
     lower_titles = [t.lower() for t in TARGET_TITLES]
     lower_locations = [l.lower() for l in TARGET_LOCATIONS]
+    lower_blacklist = [b.lower() for b in BLACKLIST_KEYWORDS]
 
     for job in jobs:
         title = job.get("title", "").lower()
         location = job.get("location", "").lower()
 
-        # Check Title Match
+        # Check Title Match (Must match one of these)
         title_match = any(target in title for target in lower_titles)
+        
+        # Check Blacklist (Must NOT contain any of these)
+        is_blacklisted = any(black in title for black in lower_blacklist)
         
         # Check Location Match (Only if list is not empty)
         location_match = True
         if lower_locations:
             location_match = any(loc in location for loc in lower_locations)
 
-        if title_match and location_match:
+        # Final Decision: Title matches AND Not blacklisted AND Location matches
+        if title_match and not is_blacklisted and location_match:
             filtered_jobs.append(job)
 
     # Save filtered results
