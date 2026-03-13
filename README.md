@@ -132,6 +132,34 @@ You only need ONE of these. Google Gemini has a generous free tier, so we recomm
 
 ---
 
+### 📊 Customizing Your Google Sheets Headers (Dynamic Mapping)
+
+Want to change the header names in your Google Sheet? You don't need to touch a single line of Python code! Everything is managed via `sheet_config.json`.
+
+![Sheet Configuration Guide](./docs/images/sheet_config_guide.png)
+
+#### 📝 How it works:
+Inside `sheet_config.json`, the `column_mapping` section links **Sheet Headers** (on the left) to **Job Data** (on the right).
+
+**Example:**
+```json
+"column_mapping": {
+    "My Custom Header": "title",
+    "Company Name": "companyName",
+    "Application Link": "link"
+}
+```
+- **"My Custom Header":** This is exactly what you will see in Row 1 of your Google Sheet.
+- **"title":** This is the internal data name (Do not change these!).
+
+#### 🛠️ How to Add or Change Headers:
+1. Open `sheet_config.json`.
+2. To **Rename** a header: Change the text on the **left side** (e.g., change `"job_title"` to `"Job Name"`).
+3. To **Add** a new header: Add a new line like `"New Column": "data_field"`.
+4. **Save** the file and run Option 5 or 6 in `main.py`. The script will automatically detect the new headers and update your sheet!
+
+---
+
 ## 🚀 How to Run the System
 1. Run: `python main.py`
 2. **Login:** A browser window will open. Login with your Gmail and click **Allow**. This creates your `token.json`.
