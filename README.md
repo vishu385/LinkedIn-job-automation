@@ -1,6 +1,6 @@
-# 🚀 LinkedIn Job Automation Pipeline (Zero-Touch System)
+# 🚀 LinkedIn Job Automation  (Zero-Touch System)
 
-Welcome to the ultimate **LinkedIn Job Automation Pipeline**! This project is designed to completely automate the tedious process of finding jobs, tailoring your resume, and writing cover letters.
+Welcome to the ultimate **LinkedIn Job Automation **! This project is designed to completely automate the tedious process of finding jobs, tailoring your resume, and writing cover letters.
 
 It is a fully automated, end-to-end Python system that:
 1. **Scrapes** real-time job postings from LinkedIn.
